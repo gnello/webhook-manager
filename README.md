@@ -1,5 +1,11 @@
 # WebhookManager
+[![Latest Stable Version][6]][7] [![Scrutinizer Code Quality][5]][6]  
+  
+  
 ![Bitbucket][1]  ![Github][2]  
+  
+  
+  
 WebhookManager allows you to easily associate an action with a specific repository event using webhooks.  
 Webhooks supported: Bitbucket, Github, Custom
 
@@ -131,3 +137,7 @@ $webhookManager = new \Gnello\WebhookManager\App([
 [1]: logos/Bitbucket@2x-blue.png
 [2]: logos/GitHub_Logo.png
 [3]: https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx
+[4]: https://scrutinizer-ci.com/g/gnello/webhook-manager/badges/quality-score.png?b=master
+[5]: https://scrutinizer-ci.com/g/gnello/webhook-manager/?branch=master
+[6]: https://poser.pugx.org/gnello/webhook-manager/v/stable
+[7]: https://packagist.org/packages/gnello/webhook-manager
