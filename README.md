@@ -39,7 +39,7 @@ Read more about how to install and use Composer on your local machine [here][3].
 - Save!
 
 ### On TravisCI
-Add this on your `.travis.yml` file:
+Add this in your `.travis.yml` file:
 ```
 notifications:
   webhooks: url of WebhookManager configured on your server (es. https://mysite.com/webhooks)
