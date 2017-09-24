@@ -42,7 +42,7 @@ Read more about how to install and use Composer on your local machine [here][3].
 Add this on your `.travis.yml` file:
 ```
 notifications:
-  webhooks: https://www.gnello.com/actions/test.php
+  webhooks: url of WebhookManager configured on your server (es. https://mysite.com/webhooks)
 ```
 
 ### On custom service
