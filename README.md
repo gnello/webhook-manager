@@ -7,8 +7,9 @@
   
   
   
-WebhookManager allows you to easily associate an action with a specific repository event using webhooks.  
-Webhooks supported: Bitbucket, Github, Custom
+WebhookManager allows you to easily associate one or more actions with a specific repository event using webhooks.  
+Services supported: Bitbucket, Github, every custom service.
+
 ## Installation
 It's highly recommended to use composer to install WebhookManagers:
 
