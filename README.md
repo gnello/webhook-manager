@@ -11,7 +11,7 @@ WebhookManager allows you to easily associate one or more actions with a specifi
 Services supported: Bitbucket, Github, every custom service.
 
 ## Installation
-It's highly recommended to use composer to install WebhookManagers:
+It's highly recommended to use composer to install WebhookManager:
 
 ```
 composer require gnello/webhook-manager
