@@ -25,7 +25,7 @@ Read more about how to install and use Composer on your local machine [here][3].
 - Go to the settings of your repository
 - Click on "Webhooks" under "Workflow"
 - Click on "Add webhook"
-- Enter the url of WebhookManagers configured on your server (es. https://mysite.com/webhooks)
+- Enter the url of WebhookManager configured on your server (es. https://mysite.com/webhooks)
 - Set the triggers
 - Save!
 
@@ -33,7 +33,7 @@ Read more about how to install and use Composer on your local machine [here][3].
 - Go to the settings of your repository
 - Click on "Webhooks" under "Options"
 - Click on "Add webhook"
-- Enter the url of WebhookManagers configured on your server (es. https://mysite.com/webhooks)
+- Enter the url of WebhookManager configured on your server (es. https://mysite.com/webhooks)
 - Set the content type on `application/json`
 - Set the events
 - Save!
