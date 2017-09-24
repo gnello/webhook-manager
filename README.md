@@ -12,7 +12,7 @@ composer require gnello/webhook-manager
 
 Read more about how to install and use Composer on your local machine [here][3].
 
-##Configuration
+## Configuration
 
 ### On Bitbucket
 - Go to the settings of your repository
