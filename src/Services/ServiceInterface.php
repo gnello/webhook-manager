@@ -15,22 +15,12 @@ namespace Gnello\WebhookManager\Services;
  */
 interface ServiceInterface
 {
-    const BITBUCKET = 'service.bitbucket';
-    const GITHUB = 'service.github';
-    const TRAVIS_CI = 'service.travis.ci';
-    const CUSTOM = 'service.custom';
-
     /**
      * ServiceInterface constructor.
      *
      * @param array $options
      */
     public function __construct(array $options);
-
-    /**
-     * @return array
-     */
-    public function getHeaders(): array;
 
     /**
      * Returns the event received from the server

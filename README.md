@@ -79,10 +79,10 @@ require '../vendor/autoload.php';
 use \Gnello\WebhookManager\App;
 use \Gnello\WebhookManager\Services\GithubService;
 
-$webhookManager = new App(['service' => \Gnello\WebhookManager\Services\ServiceInterface::GITHUB]);
+$webhookManager = new App(['service' => GithubService::class]);
 
-//Action on all events
-$webhookManager->add(GithubService::ALL, function(GithubService $service) {
+//Action on push event
+$webhookManager->add(GithubService::PUSH, function(GithubService $service) {
     $payload = $service->getPayload();
 
     //do some stuff
@@ -98,7 +98,7 @@ require '../vendor/autoload.php';
 use \Gnello\WebhookManager\App;
 use \Gnello\WebhookManager\Services\TravisCIService;
 
-$webhookManager = new App(['service' => \Gnello\WebhookManager\Services\ServiceInterface::TRAVIS_CI]);
+$webhookManager = new App(['service' => TravisCIService::class]);
 
 //Action on build passed
 $webhookManager->add(TravisCIService::PUSH, function(TravisCIService $service) {
@@ -120,18 +120,16 @@ and then register it on WebhookManager. In WebhookManager options, you must spec
 require '../vendor/autoload.php';
 
 use \Gnello\WebhookManager\App;
-use \Gnello\WebhookManager\Services\CustomService;
 
-$webhookManager = new App(['service' => \Gnello\WebhookManager\Services\ServiceInterface::CUSTOM]);
-$webhookManager->registerCustomService(CustomService::class);
+$webhookManager = new App(['service' => \YourCustomService::class]);
 
 //Action on custom event
-$webhookManager->add('event', function(CustomService $service) {
+$webhookManager->add('custom_event', function(\YourCustomService $service) {
     $payload = $service->getPayload();
     //do some stuff
 });
 
-$webhookManager->add('another_event', function(CustomService $service) {
+$webhookManager->add('another_event', function(\YourCustomService $service) {
     //do some stuff
 });
 
@@ -143,17 +141,17 @@ $webhookManager->listen();
 ```php
 //github
 $webhookManager = new \Gnello\WebhookManager\App([
-    'service' => \Gnello\WebhookManager\Services\ServiceInterface::GITHUB
+    'service' => \Gnello\WebhookManager\Services\GithubService::class
 ]);
 
 //travis ci
 $webhookManager = new \Gnello\WebhookManager\App([
-    'service' => \Gnello\WebhookManager\Services\ServiceInterface::TRAVIS_CI
+    'service' => \Gnello\WebhookManager\Services\TravisCIService::class
 ]);
 
 //custom service
 $webhookManager = new \Gnello\WebhookManager\App([
-    'service' => \Gnello\WebhookManager\Services\ServiceInterface::CUSTOM
+    'service' => \Gnello\WebhookManager\Services\YourCustomService::class
 ]);
 ```
 
