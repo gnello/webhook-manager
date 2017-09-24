@@ -1,8 +1,8 @@
 {
-  "name": "gnello/web-hook-manager",
+  "name": "gnello/webhook-manager",
   "description": "",
   "keywords": ["webhook", "bitbucket", "github"],
-  "homepage": "https://github.com/gnello/web-hook-manager",
+  "homepage": "https://github.com/gnello/webhook-manager",
   "license": "MIT",
   "authors": [
     {
@@ -12,7 +12,7 @@
   ],
   "support": {
     "email": "luca@gnello.com",
-    "issues": "https://github.com/gnello/web-hook-manager/issues"
+    "issues": "https://github.com/gnello/webhook-manager/issues"
   },
   "require": {
     "php": ">=7"
