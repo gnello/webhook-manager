@@ -11,6 +11,7 @@ namespace Gnello\WebhookManager;
 use Gnello\WebhookManager\Services\BitbucketService;
 use Gnello\WebhookManager\Services\GithubService;
 use Gnello\WebhookManager\Services\ServiceInterface;
+use Gnello\WebhookManager\Services\TravisCIService;
 
 /**
  * Class App
@@ -43,6 +44,7 @@ class App
     private $servicesFactory = [
         ServiceInterface::BITBUCKET => BitbucketService::class,
         ServiceInterface::GITHUB => GithubService::class,
+        ServiceInterface::TRAVIS_CI => TravisCIService::class,
     ];
 
     /**

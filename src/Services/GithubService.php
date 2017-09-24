@@ -21,7 +21,6 @@ class GithubService implements ServiceInterface
     /**
      * General events
      */
-    const ALL = '*';
     const LABEL = 'label';
     const MARKETPLACE_PURCHASE = 'marketplace_purchase';
     const MEMBER = 'member';
