@@ -7,7 +7,7 @@ Webhooks supported: Bitbucket, Github, Custom
 It's highly recommended to use composer to install WebhookManagers:
 
 ```
-composer require gnello/web-hook-manager
+composer require gnello/webhook-manager
 ```
 
 Read more about how to install and use Composer on your local machine [here][3].
