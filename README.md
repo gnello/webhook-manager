@@ -1,5 +1,5 @@
 # WebhookManager
-[![Latest Stable Version][6]][7] [![Scrutinizer Code Quality][4]][5]  
+[![Build Status][8]][9] [![Latest Stable Version][6]][7] [![Scrutinizer Code Quality][4]][5]  
   
   
 ![Bitbucket][1]  ![Github][2]  
@@ -141,3 +141,5 @@ $webhookManager = new \Gnello\WebhookManager\App([
 [5]: https://scrutinizer-ci.com/g/gnello/webhook-manager/?branch=master
 [6]: https://poser.pugx.org/gnello/webhook-manager/v/stable
 [7]: https://packagist.org/packages/gnello/webhook-manager
+[8]: https://travis-ci.org/gnello/webhook-manager.svg?branch=master
+[9]: https://travis-ci.org/gnello/webhook-manager
