@@ -1,5 +1,5 @@
 # WebhookManager
-[![Latest Stable Version][6]][7] [![Scrutinizer Code Quality][5]][6]  
+[![Latest Stable Version][6]][7] [![Scrutinizer Code Quality][4]][5]  
   
   
 ![Bitbucket][1]  ![Github][2]  
