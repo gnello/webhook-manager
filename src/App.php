@@ -66,7 +66,7 @@ class App
      * @return ServiceInterface
      * @throws WebhookManagerException
      */
-    public function getService()
+    private function getService()
     {
         if (isset($this->servicesFactory[$this->options['service']])) {
             $this->service = new $this->servicesFactory[$this->options['service']]($this->options);
@@ -118,7 +118,7 @@ class App
         $event = $service->getEvent();
 
         if (isset($this->callables[$event]) && is_callable($this->callables[$event])) {
-            return $this->callables[$event]($this);
+            return $this->callables[$event]($service);
         }
 
         throw new WebhookManagerException("Callable not found for the " . $event . " event.", 1002);

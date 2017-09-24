@@ -12,7 +12,7 @@ composer require gnello/webhook-manager
 
 Read more about how to install and use Composer on your local machine [here][3].
 
-## Configuration
+##Configuration
 
 ### On Bitbucket
 - Go to the settings of your repository
@@ -42,12 +42,13 @@ Using WebhookManager is very simple:
 require '../vendor/autoload.php';
 
 use \Gnello\WebhookManager\App;
+use \Gnello\WebhookManager\Services\BitbucketService;
 
 $webhookManager = new App();
 
 //Action on build passed
-$webhookManager->add(\Gnello\WebhookManager\Services\BitbucketService::BUILD_STATUS_CREATED, function(App $app) {
-    $payload = $app->getService()->getPayload();
+$webhookManager->add(BitbucketService::BUILD_STATUS_CREATED, function(BitbucketService $service) {
+    $payload = $service->getPayload();
 
     if ($payload['commit_status']['state'] == 'SUCCESSFUL') {
         //do some stuff
@@ -62,12 +63,13 @@ $webhookManager->listen();
 require '../vendor/autoload.php';
 
 use \Gnello\WebhookManager\App;
+use \Gnello\WebhookManager\Services\GithubService;
 
 $webhookManager = new App(['service' => \Gnello\WebhookManager\Services\ServiceInterface::GITHUB]);
 
 //Action on build passed
-$webhookManager->add(\Gnello\WebhookManager\Services\GithubService::ALL, function(App $app) {
-    $payload = $app->getService()->getPayload();
+$webhookManager->add(GithubService::ALL, function(GithubService $service) {
+    $payload = $service->getPayload();
 
     //do some stuff
 });
@@ -83,17 +85,18 @@ and then register it on WebhookManager. In WebhookManager options, you must spec
 require '../vendor/autoload.php';
 
 use \Gnello\WebhookManager\App;
+use \Gnello\WebhookManager\Services\CustomService;
 
 $webhookManager = new App(['service' => \Gnello\WebhookManager\Services\ServiceInterface::CUSTOM]);
 $webhookManager->registerCustomService(CustomService::class);
 
 //Action on custom event
-$webhookManager->add('event', function(App $app) {
-    $payload = $app->getService()->getPayload();
+$webhookManager->add('event', function(CustomService $service) {
+    $payload = $service->getPayload();
     //do some stuff
 });
 
-$webhookManager->add('another_event', function(App $app) {
+$webhookManager->add('another_event', function(CustomService $service) {
     //do some stuff
 });
 
