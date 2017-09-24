@@ -17,6 +17,7 @@ interface ServiceInterface
 {
     const BITBUCKET = 'service.bitbucket';
     const GITHUB = 'service.github';
+    const TRAVIS_CI = 'service.travis.ci';
     const CUSTOM = 'service.custom';
 
     /**

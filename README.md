@@ -1,23 +1,31 @@
 # WebhookManager
-WebhookManager allows you to easily associate an action with a specific repository event using webhooks.
-![Bitbucket][1] ![Github][2]
+[![Build Status][8]][9] [![Latest Stable Version][6]][7] [![Scrutinizer Code Quality][4]][5]  
+
+  
+  
+![Bitbucket][1]  ![Github][2]  ![TravisCI][10] 
+  
+  
+  
+WebhookManager allows you to easily associate one or more actions with a specific repository event using webhooks.  
+Services supported: Bitbucket, Github, TravisCI, and every custom service.
 
 ## Installation
-It's highly recommended to use composer to install WebhookManagers:
+It's highly recommended to use composer to install WebhookManager:
 
 ```
-composer require gnello/web-hook-manager
+composer require gnello/webhook-manager
 ```
 
 Read more about how to install and use Composer on your local machine [here][3].
 
-##Configuration
+## Configuration
 
 ### On Bitbucket
 - Go to the settings of your repository
 - Click on "Webhooks" under "Workflow"
 - Click on "Add webhook"
-- Enter the url of WebhookManagers configured on your server (es. https://mysite.com/webhooks)
+- Enter the url of WebhookManager configured on your server (es. https://mysite.com/webhooks)
 - Set the triggers
 - Save!
 
@@ -25,10 +33,17 @@ Read more about how to install and use Composer on your local machine [here][3].
 - Go to the settings of your repository
 - Click on "Webhooks" under "Options"
 - Click on "Add webhook"
-- Enter the url of WebhookManagers configured on your server (es. https://mysite.com/webhooks)
+- Enter the url of WebhookManager configured on your server (es. https://mysite.com/webhooks)
 - Set the content type on `application/json`
 - Set the events
 - Save!
+
+### On TravisCI
+Add this on your `.travis.yml` file:
+```
+notifications:
+  webhooks: https://www.gnello.com/actions/test.php
+```
 
 ### On custom service
 This is up to you!
@@ -41,12 +56,13 @@ Using WebhookManager is very simple:
 require '../vendor/autoload.php';
 
 use \Gnello\WebhookManager\App;
+use \Gnello\WebhookManager\Services\BitbucketService;
 
 $webhookManager = new App();
 
 //Action on build passed
-$webhookManager->add(\Gnello\WebhookManager\Services\BitbucketService::BUILD_STATUS_CREATED, function(App $app) {
-    $payload = $app->getService()->getPayload();
+$webhookManager->add(BitbucketService::BUILD_STATUS_CREATED, function(BitbucketService $service) {
+    $payload = $service->getPayload();
 
     if ($payload['commit_status']['state'] == 'SUCCESSFUL') {
         //do some stuff
@@ -61,14 +77,36 @@ $webhookManager->listen();
 require '../vendor/autoload.php';
 
 use \Gnello\WebhookManager\App;
+use \Gnello\WebhookManager\Services\GithubService;
 
 $webhookManager = new App(['service' => \Gnello\WebhookManager\Services\ServiceInterface::GITHUB]);
 
-//Action on build passed
-$webhookManager->add(\Gnello\WebhookManager\Services\GithubService::ALL, function(App $app) {
-    $payload = $app->getService()->getPayload();
+//Action on all events
+$webhookManager->add(GithubService::ALL, function(GithubService $service) {
+    $payload = $service->getPayload();
 
     //do some stuff
+});
+
+$webhookManager->listen();
+```
+
+### TravisCI
+```php
+require '../vendor/autoload.php';
+
+use \Gnello\WebhookManager\App;
+use \Gnello\WebhookManager\Services\TravisCIService;
+
+$webhookManager = new App(['service' => \Gnello\WebhookManager\Services\ServiceInterface::TRAVIS_CI]);
+
+//Action on build passed
+$webhookManager->add(TravisCIService::PUSH, function(TravisCIService $service) {
+    $payload = $service->getPayload();
+
+    if ($payload['state'] === 'passed') {
+        //do some stuff
+    }
 });
 
 $webhookManager->listen();
@@ -82,17 +120,18 @@ and then register it on WebhookManager. In WebhookManager options, you must spec
 require '../vendor/autoload.php';
 
 use \Gnello\WebhookManager\App;
+use \Gnello\WebhookManager\Services\CustomService;
 
 $webhookManager = new App(['service' => \Gnello\WebhookManager\Services\ServiceInterface::CUSTOM]);
 $webhookManager->registerCustomService(CustomService::class);
 
 //Action on custom event
-$webhookManager->add('event', function(App $app) {
-    $payload = $app->getService()->getPayload();
+$webhookManager->add('event', function(CustomService $service) {
+    $payload = $service->getPayload();
     //do some stuff
 });
 
-$webhookManager->add('another_event', function(App $app) {
+$webhookManager->add('another_event', function(CustomService $service) {
     //do some stuff
 });
 
@@ -105,6 +144,11 @@ $webhookManager->listen();
 //github
 $webhookManager = new \Gnello\WebhookManager\App([
     'service' => \Gnello\WebhookManager\Services\ServiceInterface::GITHUB
+]);
+
+//travis ci
+$webhookManager = new \Gnello\WebhookManager\App([
+    'service' => \Gnello\WebhookManager\Services\ServiceInterface::TRAVIS_CI
 ]);
 
 //custom service
@@ -127,3 +171,10 @@ $webhookManager = new \Gnello\WebhookManager\App([
 [1]: logos/Bitbucket@2x-blue.png
 [2]: logos/GitHub_Logo.png
 [3]: https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx
+[4]: https://scrutinizer-ci.com/g/gnello/webhook-manager/badges/quality-score.png?b=master
+[5]: https://scrutinizer-ci.com/g/gnello/webhook-manager/?branch=master
+[6]: https://poser.pugx.org/gnello/webhook-manager/v/stable
+[7]: https://packagist.org/packages/gnello/webhook-manager
+[8]: https://travis-ci.org/gnello/webhook-manager.svg?branch=master
+[9]: https://travis-ci.org/gnello/webhook-manager
+[10]: logos/TravisCI-Full-Color.png

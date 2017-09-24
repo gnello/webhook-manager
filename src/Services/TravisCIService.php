@@ -19,6 +19,14 @@ use Gnello\WebhookManager\WebhookManagerException;
 class TravisCIService implements ServiceInterface
 {
     /**
+     * General events
+     */
+    const PUSH = 'push';
+    const PULL_REQUEST = 'pull_request';
+    const CRON = 'cron';
+    const API = 'api';
+
+    /**
      * @var array
      */
     private $options;
@@ -57,7 +65,7 @@ class TravisCIService implements ServiceInterface
      */
     public function getEvent(): string
     {
-        return 'ok';
+        return $this->getPayload()['type'];
     }
 
     /**
@@ -66,7 +74,7 @@ class TravisCIService implements ServiceInterface
     public function getPayload()
     {
         if (!isset($this->payload)) {
-            $this->payload = json_decode($_POST['payload']);
+            $this->payload = json_decode($_POST['payload'], (bool) $this->options['json_decode_assoc']);
         }
 
         return $this->payload;
