@@ -107,7 +107,6 @@ class GithubService implements ServiceInterface
     public function getHeaders(): array
     {
         $this->headers['X-GitHub-Event'] = $_SERVER['HTTP_X_GITHUB_EVENT'];
-        $this->headers['X-Hub-Signature'] = $_SERVER['HTTP_X_HUB_SIGNATURE'];
         $this->headers['X-GitHub-Delivery'] = $_SERVER['HTTP_X_GITHUB_DELIVERY'];
 
         return $this->headers;
