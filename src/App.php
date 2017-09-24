@@ -42,7 +42,7 @@ class App
     private $service;
 
     /**
-     * Hook constructor.
+     * App constructor.
      *
      * @param array $options
      */
@@ -59,7 +59,12 @@ class App
      */
     private function getService()
     {
-        $this->service = new $this->options['service']($this->options);
+        $className = $this->options['service'];
+        if (class_exists($className)) {
+            $this->service = new $className($this->options);
+        } else {
+            throw new WebhookManagerException("Given class " . $className . " not exists.");
+        }
 
         if (!$this->service instanceof ServiceInterface) {
             throw new WebhookManagerException("Service must be an instance of ServiceInterface.");

@@ -10,17 +10,18 @@ namespace Gnello\WebhookManager\Tests\Services;
 
 use Gnello\WebhookManager\Services\GithubService;
 use Gnello\WebhookManager\Services\ServiceInterface;
+use Gnello\WebhookManager\Services\TravisCIService;
 
 /**
- * Class GithubServiceTest
+ * Class TravisCIServiceTest
  *
  * @package Gnello\WebhookManager\Tests\Services
  */
-class GithubServiceTest extends \PHPUnit_Framework_TestCase
+class TravisCIServiceTest extends \PHPUnit_Framework_TestCase
 {
-    public function testGithubServiceClassIsInstanziable()
+    public function testTravisCIServiceClassIsInstanziable()
     {
-        $service = new GithubService([]);
+        $service = new TravisCIService([]);
         $this->assertInstanceOf(ServiceInterface::class, $service);
     }
 }
