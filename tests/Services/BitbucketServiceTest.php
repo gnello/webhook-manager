@@ -18,7 +18,7 @@ use Gnello\WebHookManager\Services\ServiceInterface;
  */
 class BitbucketServiceTest extends \PHPUnit_Framework_TestCase
 {
-    public function testInstance()
+    public function testBitbucketServiceClassIsInstanziable()
     {
         $WebHookManager = new BitbucketService([]);
         $this->assertInstanceOf(ServiceInterface::class, $WebHookManager);

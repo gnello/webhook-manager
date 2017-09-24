@@ -18,7 +18,7 @@ use Gnello\WebHookManager\Services\ServiceInterface;
  */
 class GithubServiceTest extends \PHPUnit_Framework_TestCase
 {
-    public function testInstance()
+    public function testGithubServiceClassIsInstanziable()
     {
         $WebHookManager = new GithubService([]);
         $this->assertInstanceOf(ServiceInterface::class, $WebHookManager);

@@ -9,6 +9,7 @@
 namespace Gnello\WebHookManager\Tests;
 
 use Gnello\WebHookManager\App;
+use Gnello\WebHookManager\Services\GithubService;
 use Gnello\WebHookManager\WebHookManagerException;
 use Gnello\WebHookManager\Services\BitbucketService;
 use Gnello\WebHookManager\Services\ServiceInterface;
@@ -21,13 +22,13 @@ use Gnello\WebHookManager\Tests\Helpers\CustomService;
  */
 class AppTest extends \PHPUnit_Framework_TestCase
 {
-    public function testInstance()
+    public function testAppClassIsInstanziable()
     {
         $webHookManager = new App();
         $this->assertInstanceOf(App::class, $webHookManager);
     }
 
-    public function testServiceNotFoundExceptionIsTrowned()
+    public function testServiceNotFoundExceptionIsTrownedIfServiceSpecifiedNotExists()
     {
         $webHookManager = new App([
             'service' => 'service.unknown'
@@ -81,9 +82,15 @@ class AppTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('ok', $webHookManager->listen());
     }
 
-    public function testGetBitBucketService()
+    public function testGetServiceReturnsBitbucketServiceIfServiceOptionIsBitbucket()
     {
         $webHookManager = new App(['service' => ServiceInterface::BITBUCKET]);
         $this->assertInstanceOf(BitbucketService::class, $webHookManager->getService());
+    }
+
+    public function testGetServiceReturnsGithubServiceIfServiceOptionIsGithub()
+    {
+        $webHookManager = new App(['service' => ServiceInterface::GITHUB]);
+        $this->assertInstanceOf(GithubService::class, $webHookManager->getService());
     }
 }

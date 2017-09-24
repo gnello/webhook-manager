@@ -1,5 +1,6 @@
 # WebHookManager
 WebHookManager allows you to easily associate an action with a specific repository event using webhooks.
+![Bitbucket][1] ![Github][2]
 
 ## Installation
 It's highly recommended to use composer to install WebHookManagers:
@@ -123,4 +124,6 @@ $WebHookManager = new \Gnello\WebHookManager\App([
 ## Contact
 - luca@gnello.com
 
+[1]: logos/Bitbucket@2x-blue.png
+[2]: logos/GitHub_Logo.png
 [3]: https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx

@@ -24,6 +24,7 @@ class CustomService implements ServiceInterface
      */
     public function __construct(array $options)
     {
+        return [];
     }
 
     /**
