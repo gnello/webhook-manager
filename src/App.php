@@ -9,9 +9,7 @@
 namespace Gnello\WebhookManager;
 
 use Gnello\WebhookManager\Services\BitbucketService;
-use Gnello\WebhookManager\Services\GithubService;
 use Gnello\WebhookManager\Services\ServiceInterface;
-use Gnello\WebhookManager\Services\TravisCIService;
 
 /**
  * Class App
@@ -24,7 +22,7 @@ class App
      * @var array
      */
     private $defaultOptions = [
-        'service' => ServiceInterface::BITBUCKET,
+        'service' => BitbucketService::class,
         'json_decode_assoc' => true
     ];
 
@@ -37,15 +35,6 @@ class App
      * @var array
      */
     private $callables = [];
-
-    /**
-     * @var array
-     */
-    private $servicesFactory = [
-        ServiceInterface::BITBUCKET => BitbucketService::class,
-        ServiceInterface::GITHUB => GithubService::class,
-        ServiceInterface::TRAVIS_CI => TravisCIService::class,
-    ];
 
     /**
      * @var ServiceInterface
@@ -70,14 +59,10 @@ class App
      */
     private function getService()
     {
-        if (isset($this->servicesFactory[$this->options['service']])) {
-            $this->service = new $this->servicesFactory[$this->options['service']]($this->options);
-        } else {
-            throw new WebhookManagerException("Service " . $this->options['service'] . " not found.", 1001);
-        }
+        $this->service = new $this->options['service']($this->options);
 
         if (!$this->service instanceof ServiceInterface) {
-            throw new WebhookManagerException("Service must be an instance of ServiceInterface.", 1003);
+            throw new WebhookManagerException("Service must be an instance of ServiceInterface.");
         }
 
         return $this->service;
@@ -97,18 +82,6 @@ class App
     }
 
     /**
-     * Registers a custom service
-     *
-     * @param string $fullyQualifiedClassName
-     * @return App
-     */
-    public function registerCustomService(string $fullyQualifiedClassName): App
-    {
-        $this->servicesFactory[ServiceInterface::CUSTOM] = $fullyQualifiedClassName;
-        return $this;
-    }
-
-    /**
      * Performs the callback associated with the event received
      *
      * @return mixed
@@ -123,7 +96,7 @@ class App
             return $this->callables[$event]($service);
         }
 
-        throw new WebhookManagerException("Callable not found for the " . $event . " event.", 1002);
+        throw new WebhookManagerException("Callable not found for the " . $event . " event.");
     }
 }
 
