@@ -1,0 +1,34 @@
+{
+  "name": "gnello/web-hook-manager",
+  "description": "",
+  "keywords": ["webhook", "bitbucket", "github"],
+  "homepage": "https://github.com/gnello/web-hook-manager",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Luca Agnello",
+      "email": "luca@gnello.com"
+    }
+  ],
+  "support": {
+    "email": "luca@gnello.com",
+    "issues": "https://github.com/gnello/web-hook-manager/issues"
+  },
+  "require": {
+    "php": ">=7"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "*",
+    "symfony/var-dumper": "^3.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Gnello\\WebhookManager\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Gnello\\WebhookManager\\Tests\\": "tests/"
+    }
+  }
+}
