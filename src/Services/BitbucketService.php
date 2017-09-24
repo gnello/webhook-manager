@@ -81,7 +81,7 @@ class BitbucketService implements ServiceInterface
         $this->headers['X-Event-Key'] = $_SERVER['HTTP_X_EVENT_KEY'];
         $this->headers['X-Hook-UUID'] = $_SERVER['HTTP_X_HOOK_UUID'];
         $this->headers['X-Request-UUID'] = $_SERVER['HTTP_X_REQUEST_UUID'];
-        $this->headers['X-Attempt-Number'] = $_SERVER['X_ATTEMPT_NUMBER'];
+        $this->headers['X-Attempt-Number'] = $_SERVER['HTTP_X_ATTEMPT_NUMBER'];
 
         return $this->headers;
     }
