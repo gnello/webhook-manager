@@ -74,7 +74,7 @@ use \Gnello\WebhookManager\Services\GithubService;
 
 $webhookManager = new App(['service' => \Gnello\WebhookManager\Services\ServiceInterface::GITHUB]);
 
-//Action on build passed
+//Action on all events
 $webhookManager->add(GithubService::ALL, function(GithubService $service) {
     $payload = $service->getPayload();
 
