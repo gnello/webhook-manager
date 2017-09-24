@@ -20,7 +20,7 @@ class BitbucketServiceTest extends \PHPUnit_Framework_TestCase
 {
     public function testBitbucketServiceClassIsInstanziable()
     {
-        $webhookManager = new BitbucketService([]);
-        $this->assertInstanceOf(ServiceInterface::class, $webhookManager);
+        $service = new BitbucketService([]);
+        $this->assertInstanceOf(ServiceInterface::class, $service);
     }
 }

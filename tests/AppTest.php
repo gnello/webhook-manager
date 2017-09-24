@@ -9,10 +9,7 @@
 namespace Gnello\WebhookManager\Tests;
 
 use Gnello\WebhookManager\App;
-use Gnello\WebhookManager\Services\GithubService;
 use Gnello\WebhookManager\WebhookManagerException;
-use Gnello\WebhookManager\Services\BitbucketService;
-use Gnello\WebhookManager\Services\ServiceInterface;
 use Gnello\WebhookManager\Tests\Helpers\CustomService;
 
 /**
@@ -28,25 +25,26 @@ class AppTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf(App::class, $webhookManager);
     }
 
-    public function testServiceNotFoundExceptionIsTrownedIfServiceSpecifiedNotExists()
+    public function testWebhookManagerExceptionIsTrownedIfServiceSpecifiedIsNotAClass()
     {
         $webhookManager = new App([
             'service' => 'service.unknown'
         ]);
 
         $this->expectException(WebhookManagerException::class);
-        $this->expectExceptionCode(1001);
-        $this->expectExceptionMessage("Service service.unknown not found.");
 
         $webhookManager->listen();
     }
 
-    public function testCustomServiceIsPresentAfterRegisterCustomService()
+    public function testWebhookManagerExceptionIsTrownedIfServiceSpecifiedIsNotAnInstanceOfServiceInterface()
     {
-        $webhookManager = new App(['service' => ServiceInterface::CUSTOM]);
-        $webhookManager->registerCustomService(CustomService::class);
+        $webhookManager = new App([
+            'service' => \stdClass::class
+        ]);
 
-        $this->assertInstanceOf(CustomService::class, $webhookManager->getService());
+        $this->expectException(WebhookManagerException::class);
+
+        $webhookManager->listen();
     }
 
     /**
@@ -54,8 +52,7 @@ class AppTest extends \PHPUnit_Framework_TestCase
      */
     public function testCallbackIsAddedAfterAdd()
     {
-        $webhookManager = new App(['service' => ServiceInterface::CUSTOM]);
-        $webhookManager->registerCustomService(CustomService::class);
+        $webhookManager = new App(['service' => CustomService::class]);
 
         $webhookManager->add('custom.event', function() {
            return 'ok';
@@ -72,25 +69,12 @@ class AppTest extends \PHPUnit_Framework_TestCase
      */
     public function testCallbackIsPerformedAfterListen(App $webhookManager)
     {
-        $webhookManager = new App(['service' => ServiceInterface::CUSTOM]);
-        $webhookManager->registerCustomService(CustomService::class);
+        $webhookManager = new App(['service' => CustomService::class]);
 
         $webhookManager->add('custom.event', function() {
            return 'ok';
         });
 
         $this->assertEquals('ok', $webhookManager->listen());
-    }
-
-    public function testGetServiceReturnsBitbucketServiceIfServiceOptionIsBitbucket()
-    {
-        $webhookManager = new App(['service' => ServiceInterface::BITBUCKET]);
-        $this->assertInstanceOf(BitbucketService::class, $webhookManager->getService());
-    }
-
-    public function testGetServiceReturnsGithubServiceIfServiceOptionIsGithub()
-    {
-        $webhookManager = new App(['service' => ServiceInterface::GITHUB]);
-        $this->assertInstanceOf(GithubService::class, $webhookManager->getService());
     }
 }
