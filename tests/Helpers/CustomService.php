@@ -1,19 +1,19 @@
 <?php
 
 /**
- * WebHookManager
+ * WebhookManager
  *
  * @author: Luca Agnello <luca@gnello.com>
  */
 
-namespace Gnello\WebHookManager\Tests\Helpers;
+namespace Gnello\WebhookManager\Tests\Helpers;
 
-use Gnello\WebHookManager\Services\ServiceInterface;
+use Gnello\WebhookManager\Services\ServiceInterface;
 
 /**
  * Class CustomeService
  *
- * @package Gnello\WebHookManager\Tests
+ * @package Gnello\WebhookManager\Tests
  */
 class CustomService implements ServiceInterface
 {

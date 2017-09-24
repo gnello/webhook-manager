@@ -1,52 +1,52 @@
 <?php
 
 /**
- * WebHookManager
+ * WebhookManager
  *
  * @author: Luca Agnello <luca@gnello.com>
  */
 
-namespace Gnello\WebHookManager\Tests;
+namespace Gnello\WebhookManager\Tests;
 
-use Gnello\WebHookManager\App;
-use Gnello\WebHookManager\Services\GithubService;
-use Gnello\WebHookManager\WebHookManagerException;
-use Gnello\WebHookManager\Services\BitbucketService;
-use Gnello\WebHookManager\Services\ServiceInterface;
-use Gnello\WebHookManager\Tests\Helpers\CustomService;
+use Gnello\WebhookManager\App;
+use Gnello\WebhookManager\Services\GithubService;
+use Gnello\WebhookManager\WebhookManagerException;
+use Gnello\WebhookManager\Services\BitbucketService;
+use Gnello\WebhookManager\Services\ServiceInterface;
+use Gnello\WebhookManager\Tests\Helpers\CustomService;
 
 /**
  * Class HookTest
  *
- * @package Gnello\WebHookManager\Tests
+ * @package Gnello\WebhookManager\Tests
  */
 class AppTest extends \PHPUnit_Framework_TestCase
 {
     public function testAppClassIsInstanziable()
     {
-        $webHookManager = new App();
-        $this->assertInstanceOf(App::class, $webHookManager);
+        $webhookManager = new App();
+        $this->assertInstanceOf(App::class, $webhookManager);
     }
 
     public function testServiceNotFoundExceptionIsTrownedIfServiceSpecifiedNotExists()
     {
-        $webHookManager = new App([
+        $webhookManager = new App([
             'service' => 'service.unknown'
         ]);
 
-        $this->expectException(WebHookManagerException::class);
+        $this->expectException(WebhookManagerException::class);
         $this->expectExceptionCode(1001);
         $this->expectExceptionMessage("Service service.unknown not found.");
 
-        $webHookManager->listen();
+        $webhookManager->listen();
     }
 
     public function testCustomServiceIsPresentAfterRegisterCustomService()
     {
-        $webHookManager = new App(['service' => ServiceInterface::CUSTOM]);
-        $webHookManager->registerCustomService(CustomService::class);
+        $webhookManager = new App(['service' => ServiceInterface::CUSTOM]);
+        $webhookManager->registerCustomService(CustomService::class);
 
-        $this->assertInstanceOf(CustomService::class, $webHookManager->getService());
+        $this->assertInstanceOf(CustomService::class, $webhookManager->getService());
     }
 
     /**
@@ -54,43 +54,43 @@ class AppTest extends \PHPUnit_Framework_TestCase
      */
     public function testCallbackIsAddedAfterAdd()
     {
-        $webHookManager = new App(['service' => ServiceInterface::CUSTOM]);
-        $webHookManager->registerCustomService(CustomService::class);
+        $webhookManager = new App(['service' => ServiceInterface::CUSTOM]);
+        $webhookManager->registerCustomService(CustomService::class);
 
-        $webHookManager->add('custom.event', function() {
+        $webhookManager->add('custom.event', function() {
            return 'ok';
         });
 
-        $this->assertEquals('ok', $webHookManager->listen());
+        $this->assertEquals('ok', $webhookManager->listen());
         
-        return $webHookManager;
+        return $webhookManager;
     }
 
     /**
-     * @param App $webHookManager
+     * @param App $webhookManager
      * @depends testCallbackIsAddedAfterAdd
      */
-    public function testCallbackIsPerformedAfterListen(App $webHookManager)
+    public function testCallbackIsPerformedAfterListen(App $webhookManager)
     {
-        $webHookManager = new App(['service' => ServiceInterface::CUSTOM]);
-        $webHookManager->registerCustomService(CustomService::class);
+        $webhookManager = new App(['service' => ServiceInterface::CUSTOM]);
+        $webhookManager->registerCustomService(CustomService::class);
 
-        $webHookManager->add('custom.event', function() {
+        $webhookManager->add('custom.event', function() {
            return 'ok';
         });
 
-        $this->assertEquals('ok', $webHookManager->listen());
+        $this->assertEquals('ok', $webhookManager->listen());
     }
 
     public function testGetServiceReturnsBitbucketServiceIfServiceOptionIsBitbucket()
     {
-        $webHookManager = new App(['service' => ServiceInterface::BITBUCKET]);
-        $this->assertInstanceOf(BitbucketService::class, $webHookManager->getService());
+        $webhookManager = new App(['service' => ServiceInterface::BITBUCKET]);
+        $this->assertInstanceOf(BitbucketService::class, $webhookManager->getService());
     }
 
     public function testGetServiceReturnsGithubServiceIfServiceOptionIsGithub()
     {
-        $webHookManager = new App(['service' => ServiceInterface::GITHUB]);
-        $this->assertInstanceOf(GithubService::class, $webHookManager->getService());
+        $webhookManager = new App(['service' => ServiceInterface::GITHUB]);
+        $this->assertInstanceOf(GithubService::class, $webhookManager->getService());
     }
 }

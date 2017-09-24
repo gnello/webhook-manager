@@ -1,20 +1,20 @@
 <?php
 
 /**
- * WebHookManager
+ * WebhookManager
  *
  * @author: Luca Agnello <luca@gnello.com>
  */
 
-namespace Gnello\WebHookManager\Services;
+namespace Gnello\WebhookManager\Services;
 
-use Gnello\WebHookManager\WebHookManagerException;
+use Gnello\WebhookManager\WebhookManagerException;
 
 /**
  * Class BitbucketService
  *
  * @link https://confluence.atlassian.com/bitbucket/event-payloads-740262817.html
- * @package Gnello\WebHookManager\Services
+ * @package Gnello\WebhookManager\Services
  */
 class BitbucketService implements ServiceInterface
 {
@@ -88,7 +88,7 @@ class BitbucketService implements ServiceInterface
 
     /**
      * @return string
-     * @throws WebHookManagerException
+     * @throws WebhookManagerException
      */
     public function getEvent(): string
     {
@@ -97,7 +97,7 @@ class BitbucketService implements ServiceInterface
         }
 
         if (!isset($this->headers['X-Event-Key'])) {
-            throw new WebHookManagerException("No event specified.");
+            throw new WebhookManagerException("No event specified.");
         }
 
         return $this->headers['X-Event-Key'];

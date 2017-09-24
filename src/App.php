@@ -1,21 +1,21 @@
 <?php
 
 /**
- * WebHookManager
+ * WebhookManager
  *
  * @author: Luca Agnello <luca@gnello.com>
  */
 
-namespace Gnello\WebHookManager;
+namespace Gnello\WebhookManager;
 
-use Gnello\WebHookManager\Services\BitbucketService;
-use Gnello\WebHookManager\Services\GithubService;
-use Gnello\WebHookManager\Services\ServiceInterface;
+use Gnello\WebhookManager\Services\BitbucketService;
+use Gnello\WebhookManager\Services\GithubService;
+use Gnello\WebhookManager\Services\ServiceInterface;
 
 /**
  * Class App
  *
- * @package Gnello\WebHookManager
+ * @package Gnello\WebhookManager
  */
 class App
 {
@@ -64,18 +64,18 @@ class App
      * Returns the current service
      *
      * @return ServiceInterface
-     * @throws WebHookManagerException
+     * @throws WebhookManagerException
      */
     public function getService()
     {
         if (isset($this->servicesFactory[$this->options['service']])) {
             $this->service = new $this->servicesFactory[$this->options['service']]($this->options);
         } else {
-            throw new WebHookManagerException("Service " . $this->options['service'] . " not found.", 1001);
+            throw new WebhookManagerException("Service " . $this->options['service'] . " not found.", 1001);
         }
 
         if (!$this->service instanceof ServiceInterface) {
-            throw new WebHookManagerException("Service must be an instance of ServiceInterface.", 1003);
+            throw new WebhookManagerException("Service must be an instance of ServiceInterface.", 1003);
         }
 
         return $this->service;
@@ -110,7 +110,7 @@ class App
      * Performs the callback associated with the event received
      *
      * @return mixed
-     * @throws WebHookManagerException
+     * @throws WebhookManagerException
      */
     public function listen()
     {
@@ -121,7 +121,7 @@ class App
             return $this->callables[$event]($this);
         }
 
-        throw new WebHookManagerException("Callable not found for the " . $event . " event.", 1002);
+        throw new WebhookManagerException("Callable not found for the " . $event . " event.", 1002);
     }
 }
 

@@ -1,20 +1,20 @@
 <?php
 
 /**
- * WebHookManager
+ * WebhookManager
  *
  * @author: Luca Agnello <luca@gnello.com>
  */
 
-namespace Gnello\WebHookManager\Services;
+namespace Gnello\WebhookManager\Services;
 
-use Gnello\WebHookManager\WebHookManagerException;
+use Gnello\WebhookManager\WebhookManagerException;
 
 /**
  * Class GithubService
  *
  * @link https://developer.github.com/v3/activity/events/types
- * @package Gnello\WebHookManager\Services
+ * @package Gnello\WebhookManager\Services
  */
 class GithubService implements ServiceInterface
 {
@@ -115,7 +115,7 @@ class GithubService implements ServiceInterface
 
     /**
      * @return string
-     * @throws WebHookManagerException
+     * @throws WebhookManagerException
      */
     public function getEvent(): string
     {
@@ -124,7 +124,7 @@ class GithubService implements ServiceInterface
         }
 
         if (!isset($this->headers['X-GitHub-Event'])) {
-            throw new WebHookManagerException("No event specified.");
+            throw new WebhookManagerException("No event specified.");
         }
 
         return $this->headers['X-GitHub-Event'];

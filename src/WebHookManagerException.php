@@ -1,19 +1,19 @@
 <?php
 
 /**
- * WebHookManager
+ * WebhookManager
  *
  * @author: Luca Agnello <luca@gnello.com>
  */
 
-namespace Gnello\WebHookManager;
+namespace Gnello\WebhookManager;
 
 /**
- * Class WebHookManagerException
+ * Class WebhookManagerException
  *
- * @package Gnello\WebHookManager
+ * @package Gnello\WebhookManager
  */
-class WebHookManagerException extends \Exception
+class WebhookManagerException extends \Exception
 {
 
 }

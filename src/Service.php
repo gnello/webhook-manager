@@ -1,19 +1,19 @@
 <?php
 
 /**
- * WebHookManager
+ * WebhookManager
  *
  * @author: Luca Agnello <luca@gnello.com>
  */
 
-namespace Gnello\WebHookManager;
+namespace Gnello\WebhookManager;
 
-use Gnello\WebHookManager\Services\ServiceInterface;
+use Gnello\WebhookManager\Services\ServiceInterface;
 
 /**
  * Class Service
  *
- * @package Gnello\WebHookManager
+ * @package Gnello\WebhookManager
  */
 class Service implements ServiceInterface
 {
@@ -63,7 +63,7 @@ class Service implements ServiceInterface
 
     /**
      * @return string
-     * @throws WebHookManagerException
+     * @throws WebhookManagerException
      */
     public function getEvent(): string
     {
@@ -72,7 +72,7 @@ class Service implements ServiceInterface
         }
 
         if (!isset($this->headers['X-Event-Key'])) {
-            throw new WebHookManagerException("No event specified.");
+            throw new WebhookManagerException("No event specified.");
         }
 
         return $this->headers['X-Event-Key'];

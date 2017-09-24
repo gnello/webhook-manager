@@ -1,26 +1,26 @@
 <?php
 
 /**
- * WebHookManager
+ * WebhookManager
  *
  * @author: Luca Agnello <luca@gnello.com>
  */
 
-namespace Gnello\WebHookManager\Tests\Services;
+namespace Gnello\WebhookManager\Tests\Services;
 
-use Gnello\WebHookManager\Services\BitbucketService;
-use Gnello\WebHookManager\Services\ServiceInterface;
+use Gnello\WebhookManager\Services\BitbucketService;
+use Gnello\WebhookManager\Services\ServiceInterface;
 
 /**
  * Class BitbucketServiceTest
  *
- * @package Gnello\WebHookManager\Tests\Services
+ * @package Gnello\WebhookManager\Tests\Services
  */
 class BitbucketServiceTest extends \PHPUnit_Framework_TestCase
 {
     public function testBitbucketServiceClassIsInstanziable()
     {
-        $WebHookManager = new BitbucketService([]);
-        $this->assertInstanceOf(ServiceInterface::class, $WebHookManager);
+        $webhookManager = new BitbucketService([]);
+        $this->assertInstanceOf(ServiceInterface::class, $webhookManager);
     }
 }

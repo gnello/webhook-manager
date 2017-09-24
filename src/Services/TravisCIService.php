@@ -1,20 +1,20 @@
 <?php
 
 /**
- * WebHookManager
+ * WebhookManager
  *
  * @author: Luca Agnello <luca@gnello.com>
  */
 
-namespace Gnello\WebHookManager\Services;
+namespace Gnello\WebhookManager\Services;
 
-use Gnello\WebHookManager\WebHookManagerException;
+use Gnello\WebhookManager\WebhookManagerException;
 
 /**
  * Class TravisCIService
  *
  * @link https://docs.travis-ci.com/user/notifications/#Configuring-webhook-notifications
- * @package Gnello\WebHookManager\Services
+ * @package Gnello\WebhookManager\Services
  */
 class TravisCIService implements ServiceInterface
 {
@@ -53,7 +53,7 @@ class TravisCIService implements ServiceInterface
 
     /**
      * @return string
-     * @throws WebHookManagerException
+     * @throws WebhookManagerException
      */
     public function getEvent(): string
     {

@@ -1,17 +1,17 @@
 <?php
 
 /**
- * WebHookManager
+ * WebhookManager
  *
  * @author: Luca Agnello <luca@gnello.com>
  */
 
-namespace Gnello\WebHookManager\Services;
+namespace Gnello\WebhookManager\Services;
 
 /**
  * Interface ServiceInterface
  *
- * @package Gnello\WebHookManager\Services
+ * @package Gnello\WebhookManager\Services
  */
 interface ServiceInterface
 {

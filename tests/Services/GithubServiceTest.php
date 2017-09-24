@@ -1,26 +1,26 @@
 <?php
 
 /**
- * WebHookManager
+ * WebhookManager
  *
  * @author: Luca Agnello <luca@gnello.com>
  */
 
-namespace Gnello\WebHookManager\Tests\Services;
+namespace Gnello\WebhookManager\Tests\Services;
 
-use Gnello\WebHookManager\Services\GithubService;
-use Gnello\WebHookManager\Services\ServiceInterface;
+use Gnello\WebhookManager\Services\GithubService;
+use Gnello\WebhookManager\Services\ServiceInterface;
 
 /**
  * Class GithubServiceTest
  *
- * @package Gnello\WebHookManager\Tests\Services
+ * @package Gnello\WebhookManager\Tests\Services
  */
 class GithubServiceTest extends \PHPUnit_Framework_TestCase
 {
     public function testGithubServiceClassIsInstanziable()
     {
-        $WebHookManager = new GithubService([]);
-        $this->assertInstanceOf(ServiceInterface::class, $WebHookManager);
+        $webhookManager = new GithubService([]);
+        $this->assertInstanceOf(ServiceInterface::class, $webhookManager);
     }
 }

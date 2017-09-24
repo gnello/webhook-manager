@@ -23,12 +23,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Gnello\\WebHookManager\\": "src/"
+      "Gnello\\WebhookManager\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Gnello\\WebHookManager\\Tests\\": "tests/"
+      "Gnello\\WebhookManager\\Tests\\": "tests/"
     }
   }
 }
