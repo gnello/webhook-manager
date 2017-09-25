@@ -1,7 +1,7 @@
 {
   "name": "gnello/webhook-manager",
-  "description": "",
-  "keywords": ["webhook", "bitbucket", "github"],
+  "description": "Easily associate one or more actions with a specific repository event using webhooks",
+  "keywords": ["webhook", "bitbucket", "github", "travisci"],
   "homepage": "https://github.com/gnello/webhook-manager",
   "license": "MIT",
   "authors": [
