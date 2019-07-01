@@ -70,10 +70,17 @@ class AppTest extends TestCase
      */
     public function testCallbackIsPerformedAfterListen(App $webhookManager)
     {
-        $webhookManager = new App(['service' => CustomService::class]);
+        $this->assertEquals('ok', $webhookManager->listen());
+    }
 
-        $webhookManager->add('custom.event', function() {
-           return 'ok';
+    /**
+     * @param App $webhookManager
+     * @depends testCallbackIsAddedAfterAdd
+     */
+    public function testCallbackIsPerformedOnMultipleEvents(App $webhookManager)
+    {
+        $webhookManager->add(['custom.event', 'custom.event.two'], function() {
+            return 'ok';
         });
 
         $this->assertEquals('ok', $webhookManager->listen());
