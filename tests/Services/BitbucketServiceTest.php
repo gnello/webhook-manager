@@ -10,13 +10,14 @@ namespace Gnello\WebhookManager\Tests\Services;
 
 use Gnello\WebhookManager\Services\BitbucketService;
 use Gnello\WebhookManager\Services\ServiceInterface;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class BitbucketServiceTest
  *
  * @package Gnello\WebhookManager\Tests\Services
  */
-class BitbucketServiceTest extends \PHPUnit_Framework_TestCase
+class BitbucketServiceTest extends TestCase
 {
     public function testBitbucketServiceClassIsInstanziable()
     {

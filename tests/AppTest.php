@@ -11,13 +11,14 @@ namespace Gnello\WebhookManager\Tests;
 use Gnello\WebhookManager\App;
 use Gnello\WebhookManager\WebhookManagerException;
 use Gnello\WebhookManager\Tests\Helpers\CustomService;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class HookTest
  *
  * @package Gnello\WebhookManager\Tests
  */
-class AppTest extends \PHPUnit_Framework_TestCase
+class AppTest extends TestCase
 {
     public function testAppClassIsInstanziable()
     {
