@@ -44,6 +44,7 @@ class BitbucketService implements ServiceInterface
     const PULL_REQUEST_APPROVED = 'pullrequest:approved';
     const PULL_REQUEST_APPROVAL_REMOVED = 'pullrequest:unapproved';
     const PULL_REQUEST_MERGED = 'pullrequest:fulfilled';
+    const PULL_REQUEST_DECLINED = 'pullrequest:rejected';
     const PULL_REQUEST_COMMENT_CREATED = 'pullrequest:comment_created';
     const PULL_REQUEST_COMMENT_UPDATED = 'pullrequest:comment_updated';
     const PULL_REQUEST_COMMENT_DELETED = 'pullrequest:comment_deleted';
