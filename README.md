@@ -7,7 +7,7 @@
   
   
   
-WebhookManager allows you to easily associate one or more actions with a specific repository event using webhooks.  
+WebhookManager easily associates one or more actions with a specific repository event using webhooks.  
 Services supported: Bitbucket, Github, TravisCI and every custom service.
 
 ## Installation
@@ -49,7 +49,7 @@ notifications:
 This is up to you!
 
 ## Usage
-Using WebhookManager is very simple:
+WebhookManager usage is very simple:
 
 ### Bitbucket
 ```php
@@ -61,7 +61,7 @@ use \Gnello\WebhookManager\Services\BitbucketService;
 $webhookManager = new App();
 
 //Action on build passed
-$webhookManager->add(BitbucketService::BUILD_STATUS_CREATED, function(BitbucketService $service) {
+$webhookManager->add([BitbucketService::BUILD_STATUS_CREATED, BitbucketService::BUILD_STATUS_UPDATED], function(BitbucketService $service) {
     $payload = $service->getPayload();
 
     if ($payload['commit_status']['state'] == 'SUCCESSFUL') {
@@ -113,8 +113,8 @@ $webhookManager->listen();
 ```
 
 ### Custom service
-To use a custom service, you must create a class that implements the ```\Gnello\WebhookManager\Services\ServiceInterface``` interface
-and then register it on WebhookManager. In WebhookManager options, you must specify that you want to use a custom service.
+To use a custom service, you should create a class that implements the ```\Gnello\WebhookManager\Services\ServiceInterface``` interface
+and then register it on WebhookManager. In WebhookManager options, you should specify that you want to use a custom service.
 
 ```php
 require '../vendor/autoload.php';

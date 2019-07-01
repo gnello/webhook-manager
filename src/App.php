@@ -74,20 +74,27 @@ class App
     }
 
     /**
-     * Adds a callback binded with an event
+     * Adds a callback bound with one or more events
      *
-     * @param string   $event
-     * @param callable $callable
+     * @param string|array   $event
+     * @param callable       $callable
      * @return App
      */
-    public function add(string $event, callable $callable): App
+    public function add($event, callable $callable): App
     {
-        $this->callables[$event] = $callable;
+        if (!is_array($event)) {
+            $event = [$event];
+        }
+
+        foreach ($event as $e) {
+            $this->callables[$e] = $callable;
+        }
+
         return $this;
     }
 
     /**
-     * Performs the callback associated with the event received
+     * Performs the callback bound with the event received
      *
      * @return mixed
      * @throws WebhookManagerException
