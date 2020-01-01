@@ -1,5 +1,5 @@
 # WebhookManager
-[![Build Status][8]][9] [![Latest Stable Version][6]][7] [![Scrutinizer Code Quality][4]][5]  
+[![Build Status][8]][9] [![Latest Stable Version][6]][7] [![Scrutinizer Code Quality][4]][5] [![Total Downloads][11]][12]
 
   
   
@@ -176,3 +176,5 @@ $webhookManager = new \Gnello\WebhookManager\App([
 [8]: https://travis-ci.org/gnello/webhook-manager.svg?branch=master
 [9]: https://travis-ci.org/gnello/webhook-manager
 [10]: logos/TravisCI-Full-Color.png
+[11]: https://poser.pugx.org/gnello/webhook-manager/downloads
+[12]: https://packagist.org/packages/gnello/webhook-manager
